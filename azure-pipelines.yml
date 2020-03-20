@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'CentOSAgent-TnT-Demo-Pool'
+  name: 'CentOSAgent-TnT-Demo-Pool'
 
 steps:
 - script: echo Hello, world!
