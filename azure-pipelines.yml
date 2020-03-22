@@ -10,20 +10,17 @@ pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
 steps:
-- task: GitDownloader@0
+- task: Bash@3
+  displayName: 'Clone Deploy Scripts'
   inputs:
-    RepositoryUrl: 'https://supermarioworld@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo'
-    BranchTag: 'master'
-  env:
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      echo 'Hello world'
+      echo 'line two'
 
 - script: echo 'SonarCube Result!'
   displayName: 'SonarCube Scan'
 
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
