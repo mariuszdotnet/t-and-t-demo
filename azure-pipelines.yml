@@ -10,6 +10,9 @@ pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
 steps:
+- script: echo 'SonarCube Result!'
+  displayName: 'SonarCube Scan'
+
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
