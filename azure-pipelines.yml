@@ -16,8 +16,7 @@ steps:
     targetType: 'inline'
     script: |
       # Write your commands here
-      echo 'Hello world'
-      echo 'line two'
+      git clone https://supermarioworld@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
 
 - script: echo 'SonarCube Result!'
   displayName: 'SonarCube Scan'
