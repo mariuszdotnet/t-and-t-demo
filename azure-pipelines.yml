@@ -16,7 +16,9 @@ steps:
     targetType: 'inline'
     script: |
       # Write your commands here
-      git clone https://supermarioworld:$REPOS-PAT@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
+      if [ ! -d "t-and-t-demo" ]; then
+        git clone https://supermarioworld:$REPOS-PAT@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
+      fi
 
 - script: echo 'SonarCube Result!'
   displayName: 'SonarCube Scan'
