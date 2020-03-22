@@ -10,6 +10,13 @@ pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
 steps:
+- task: GitDownloader@0
+  inputs:
+    RepositoryUrl: 'https://supermarioworld@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo'
+    BranchTag: 'master'
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+
 - script: echo 'SonarCube Result!'
   displayName: 'SonarCube Scan'
 
