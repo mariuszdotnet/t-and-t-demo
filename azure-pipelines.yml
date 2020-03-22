@@ -18,9 +18,6 @@ steps:
       # Write your commands here
       if [ ! -d "t-and-t-demo" ]; then
         git clone https://supermarioworld:$REPOS-PAT@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
-      else
-        cd t-and-t-demo
-        git pull https://supermarioworld:$REPOS-PAT@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
       fi
 
 - script: echo 'SonarCube Result!'
