@@ -10,7 +10,7 @@ pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
 stages:
-- stage: Build and Test Stage
+- stage: Build_and_Test_Stage
   jobs:
   - job: BuildJob
     steps:
@@ -30,6 +30,6 @@ stages:
     - script: echo 'SonarCube Result!'
       displayName: 'SonarCube Scan'
 
-- stage: Deploy Stage
+- stage: Deploy_Stage
   jobs:
   - job: DeployJob
