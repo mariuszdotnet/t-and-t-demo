@@ -62,6 +62,7 @@ stages:
         readyTimeout: '20000'
 
     - task: SSH@0
+      displayName: '7 Check Page Status 200'
       inputs:
         sshEndpoint: 'tnt-demo-ssh'
         runOptions: 'script'
