@@ -46,3 +46,17 @@ stages:
         contents: '**'
         targetFolder: '/home/mariuszdotnet/deploy-scripts/'
         readyTimeout: '20000'
+    - task: SSH@0
+      displayName: '1 Enable Maintenance'
+      inputs:
+        sshEndpoint: 'tnt-demo-ssh'
+        runOptions: 'script'
+        scriptPath: '/home/mariuszdotnet/deploy-scripts/1_enable_maintenance.sh'
+        readyTimeout: '20000'
+    - task: SSH@0
+      displayName: '2 Backup Database'
+      inputs:
+        sshEndpoint: 'tnt-demo-ssh'
+        runOptions: 'script'
+        scriptPath: '/home/mariuszdotnet/deploy-scripts/2_back_up_db.sh'
+        readyTimeout: '20000'
