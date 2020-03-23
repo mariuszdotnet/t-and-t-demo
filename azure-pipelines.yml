@@ -19,7 +19,6 @@ stages:
     - script: echo 'SonarCube Result!'
       displayName: 'SonarCube Scan'
 
-
 - stage: Deploy_Stage
   displayName: Deploy Stage
   jobs:
