@@ -16,8 +16,11 @@ steps:
     targetType: 'inline'
     script: |
       # Write your commands here
-      if [ ! -d "t-and-t-demo" ]; then
+      if [ ! -d "t-and-t-demo" ]
+      then
         git clone https://supermarioworld:$(repos-pat)@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
+      else
+        echo 'Add git pull here'
       fi
 
 - script: echo 'SonarCube Result!'
