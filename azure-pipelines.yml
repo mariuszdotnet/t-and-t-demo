@@ -16,8 +16,18 @@ stages:
   - job: Test_Job
     displayName: Test Job
     steps:
+    - script: echo 'SonarCube Result!'
+      displayName: 'SonarCube Scan'
+
+
+- stage: Deploy_Stage
+  displayName: Deploy Stage
+  jobs:
+  - job: Deploy_Job
+    displayName: Deploy Job
+    steps:
     - task: Bash@3
-      displayName: 'Clone Deploy Scripts'
+      displayName: 'Clone Deployment Scripts'
       inputs:
         targetType: 'inline'
         script: |
@@ -28,12 +38,3 @@ stages:
           else
             echo 'Add git pull here'
           fi
-
-  - job: TestJob
-    steps:
-    - script: echo 'SonarCube Result!'
-      displayName: 'SonarCube Scan'
-
-- stage: Deploy_Stage
-  jobs:
-  - job: DeployJob
