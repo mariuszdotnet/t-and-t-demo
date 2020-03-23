@@ -27,6 +27,8 @@ stages:
             echo 'Add git pull here'
           fi
 
+  - job: TestJob
+    steps:
     - script: echo 'SonarCube Result!'
       displayName: 'SonarCube Scan'
 
