@@ -39,6 +39,7 @@ stages:
             echo 'Add git pull here'
           fi
     - task: CopyFilesOverSSH@0
+      displayName: 'SSH Deploy Scripts to Backend'
       inputs:
         sshEndpoint: 'tnt-demo-ssh'
         sourceFolder: '$(Agent.BuildDirectory)/s/t-and-t-demo/deploy-scripts/'
