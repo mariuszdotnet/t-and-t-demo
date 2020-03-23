@@ -62,9 +62,9 @@ stages:
         readyTimeout: '20000'
 
     - task: SSH@0
-      displayName: '7 Check Page Status'
       inputs:
         sshEndpoint: 'tnt-demo-ssh'
         runOptions: 'script'
         scriptPath: '/home/mariuszdotnet/deploy-scripts/7_check_200.sh'
+        args: 'url="https://www.tntnightmarket.biz"'
         readyTimeout: '20000'
