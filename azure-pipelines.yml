@@ -23,49 +23,53 @@ stages:
 - stage: Deploy_Stage
   displayName: Deploy Stage
   jobs:
-  - job: Deploy_Job
+  - deployment: Deploy_Job
     displayName: Deploy Job
-    steps:
-    - task: Bash@3
-      displayName: 'Clone Deployment Scripts'
-      inputs:
-        targetType: 'inline'
-        script: |
-          # Write your commands here
-          if [ ! -d "t-and-t-demo" ]
-          then
-            git clone https://supermarioworld:$(repos-pat)@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
-          else
-            echo 'Add git pull here'
-          fi
-    - task: CopyFilesOverSSH@0
-      displayName: 'SSH Deploy Scripts to Backend'
-      inputs:
-        sshEndpoint: 'tnt-demo-ssh'
-        sourceFolder: '$(Agent.BuildDirectory)/s/t-and-t-demo/deploy-scripts/'
-        contents: '**'
-        targetFolder: '/home/mariuszdotnet/deploy-scripts/'
-        readyTimeout: '20000'
-    - task: SSH@0
-      displayName: '1 Enable Maintenance'
-      inputs:
-        sshEndpoint: 'tnt-demo-ssh'
-        runOptions: 'script'
-        scriptPath: '/home/mariuszdotnet/deploy-scripts/1_enable_maintenance.sh'
-        readyTimeout: '20000'
-    - task: SSH@0
-      displayName: '2 Backup Database'
-      inputs:
-        sshEndpoint: 'tnt-demo-ssh'
-        runOptions: 'script'
-        scriptPath: '/home/mariuszdotnet/deploy-scripts/2_backup_db.sh'
-        readyTimeout: '20000'
+    environment: 'staging'
+    strategy:
+      runOnce:
+        deploy:      
+          steps:
+          - task: Bash@3
+            displayName: 'Clone Deployment Scripts'
+            inputs:
+              targetType: 'inline'
+              script: |
+                # Write your commands here
+                if [ ! -d "t-and-t-demo" ]
+                then
+                  git clone https://supermarioworld:$(repos-pat)@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
+                else
+                  echo 'Add git pull here'
+                fi
+          - task: CopyFilesOverSSH@0
+            displayName: 'SSH Deploy Scripts to Backend'
+            inputs:
+              sshEndpoint: 'tnt-demo-ssh'
+              sourceFolder: '$(Agent.BuildDirectory)/s/t-and-t-demo/deploy-scripts/'
+              contents: '**'
+              targetFolder: '/home/mariuszdotnet/deploy-scripts/'
+              readyTimeout: '20000'
+          - task: SSH@0
+            displayName: '1 Enable Maintenance'
+            inputs:
+              sshEndpoint: 'tnt-demo-ssh'
+              runOptions: 'script'
+              scriptPath: '/home/mariuszdotnet/deploy-scripts/1_enable_maintenance.sh'
+              readyTimeout: '20000'
+          - task: SSH@0
+            displayName: '2 Backup Database'
+            inputs:
+              sshEndpoint: 'tnt-demo-ssh'
+              runOptions: 'script'
+              scriptPath: '/home/mariuszdotnet/deploy-scripts/2_backup_db.sh'
+              readyTimeout: '20000'
 
-    - task: SSH@0
-      displayName: '7 Check Page Status 200'
-      inputs:
-        sshEndpoint: 'tnt-demo-ssh'
-        runOptions: 'script'
-        scriptPath: '/home/mariuszdotnet/deploy-scripts/7_check_200.sh'
-        args: 'https://www.tntnightmarket.biz'
-        readyTimeout: '20000'
+          - task: SSH@0
+            displayName: '7 Check Page Status 200'
+            inputs:
+              sshEndpoint: 'tnt-demo-ssh'
+              runOptions: 'script'
+              scriptPath: '/home/mariuszdotnet/deploy-scripts/7_check_200.sh'
+              args: 'https://www.tntnightmarket.biz'
+              readyTimeout: '20000'
