@@ -38,3 +38,10 @@ stages:
           else
             echo 'Add git pull here'
           fi
+    - task: CopyFilesOverSSH@0
+      inputs:
+        sshEndpoint: 'tnt-demo-ssh'
+        sourceFolder: '$(Agent.BuildDirectory)/t-and-t-demo/deply-scripts/'
+        contents: '**'
+        targetFolder: '/home/mariuszdotnet/deply-scripts/'
+        readyTimeout: '20000'
