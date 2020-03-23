@@ -10,9 +10,11 @@ pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
 stages:
-- stage: Build_and_Test_Stage
+- stage: Test_Stage
+  displayName: Test Stage
   jobs:
-  - job: BuildJob
+  - job: Test_Job
+    displayName: Test Job
     steps:
     - task: Bash@3
       displayName: 'Clone Deploy Scripts'
