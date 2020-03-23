@@ -9,22 +9,27 @@ trigger:
 pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
-steps:
-- task: Bash@3
-  displayName: 'Clone Deploy Scripts'
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      if [ ! -d "t-and-t-demo" ]
-      then
-        git clone https://supermarioworld:$(repos-pat)@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
-      else
-        echo 'Add git pull here'
-      fi
+stages:
+- stage: Build and Test Stage
+  jobs:
+  - job: BuildJob
+    steps:
+    - task: Bash@3
+      displayName: 'Clone Deploy Scripts'
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your commands here
+          if [ ! -d "t-and-t-demo" ]
+          then
+            git clone https://supermarioworld:$(repos-pat)@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
+          else
+            echo 'Add git pull here'
+          fi
 
-- script: echo 'SonarCube Result!'
-  displayName: 'SonarCube Scan'
+    - script: echo 'SonarCube Result!'
+      displayName: 'SonarCube Scan'
 
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- stage: Deploy Stage
+  jobs:
+  - job: DeployJob
