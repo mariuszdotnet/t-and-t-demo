@@ -58,5 +58,5 @@ stages:
       inputs:
         sshEndpoint: 'tnt-demo-ssh'
         runOptions: 'script'
-        scriptPath: '/home/mariuszdotnet/deploy-scripts/2_back_up_db.sh'
+        scriptPath: '/home/mariuszdotnet/deploy-scripts/2_backup_db.sh'
         readyTimeout: '20000'
