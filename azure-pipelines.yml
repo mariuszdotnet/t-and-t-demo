@@ -60,3 +60,11 @@ stages:
         runOptions: 'script'
         scriptPath: '/home/mariuszdotnet/deploy-scripts/2_backup_db.sh'
         readyTimeout: '20000'
+
+    - task: SSH@0
+      displayName: '7 Check Page Status'
+      inputs:
+        sshEndpoint: 'tnt-demo-ssh'
+        runOptions: 'script'
+        scriptPath: '/home/mariuszdotnet/deploy-scripts/7_check_200.sh'
+        readyTimeout: '20000'
