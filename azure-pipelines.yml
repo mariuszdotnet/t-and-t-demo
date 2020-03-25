@@ -9,6 +9,12 @@ trigger:
 pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
+resources:
+  repositories:
+  - repository: MyAzureReposGitRepo
+    type: git
+    name: t-and-t-demo/t-and-t-demo
+
 # Test Staging
 stages:
 - stage: Test_Staging
@@ -17,6 +23,7 @@ stages:
   - job: Test_Job
     displayName: Test Job
     steps:
+    - checkout: self
     - script: echo 'SonarCube Result!'
       displayName: 'SonarCube Scan'
 
@@ -26,11 +33,13 @@ stages:
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
-    environment: 'staging'
+    #environment: 'staging'
     strategy:
       runOnce:
         deploy:      
           steps:
+          - checkout: self
+          - checkout: MyAzureReposGitRepo
           # Bash to call Azure Repo
           - task: Bash@3
             displayName: 'Clone Deployment Scripts'
@@ -82,10 +91,12 @@ stages:
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
-    environment: 'production'
+    #environment: 'production'
     strategy:
       runOnce:
         deploy:
           steps:
+            - checkout: self
+            - checkout: MyAzureReposGitRepo
             - script: echo 'Production Deployment Completed!'
               displayName: 'Production Deployment'
