@@ -33,7 +33,7 @@ stages:
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
-    #environment: 'staging'
+    environment: 'staging'
     strategy:
       runOnce:
         deploy:      
@@ -78,7 +78,7 @@ stages:
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
-    #environment: 'production'
+    environment: 'production'
     strategy:
       runOnce:
         deploy:
