@@ -40,19 +40,6 @@ stages:
           steps:
           - checkout: self
           - checkout: MyAzureReposGitRepo
-          # Bash to call Azure Repo
-          - task: Bash@3
-            displayName: 'Clone Deployment Scripts'
-            inputs:
-              targetType: 'inline'
-              script: |
-                # Write your commands here
-                if [ ! -d "t-and-t-demo" ]
-                then
-                  git clone https://supermarioworld:$(repos-pat)@dev.azure.com/supermarioworld/t-and-t-demo/_git/t-and-t-demo
-                else
-                  echo 'Add git pull here'
-                fi
           - task: CopyFilesOverSSH@0
             displayName: 'SSH Deploy Scripts to Backend'
             inputs:
