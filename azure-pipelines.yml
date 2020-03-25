@@ -24,6 +24,7 @@ stages:
     displayName: Test Job
     steps:
     - checkout: self
+      path: /mariusz
     - script: echo 'SonarCube Result!'
       displayName: 'SonarCube Scan'
 
