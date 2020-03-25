@@ -40,6 +40,14 @@ stages:
           steps:
           - checkout: self
           - checkout: git://t-and-t-demo/t-and-t-demo
+
+          - task: SSH@0
+            inputs:
+              sshEndpoint: 'tnt-demo-ssh'
+              runOptions: 'inline'
+              inline: 'ls - al /home/mariuszdotnet/deploy-scripts/'
+              readyTimeout: '20000'
+
           - task: CopyFilesOverSSH@0
             displayName: 'SSH Deploy Scripts to Backend'
             inputs:
