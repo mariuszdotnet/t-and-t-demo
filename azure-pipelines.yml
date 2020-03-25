@@ -45,7 +45,7 @@ stages:
             inputs:
               sshEndpoint: 'tnt-demo-ssh'
               runOptions: 'inline'
-              inline: 'ls - al /home/mariuszdotnet/deploy-scripts/'
+              inline: 'ls -al /home/mariuszdotnet/deploy-scripts/'
               readyTimeout: '20000'
 
           - task: CopyFilesOverSSH@0
