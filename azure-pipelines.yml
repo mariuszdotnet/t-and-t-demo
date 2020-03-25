@@ -9,11 +9,11 @@ trigger:
 pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
-resources:
-  repositories:
-  - repository: MyAzureReposGitRepo
-    type: git
-    name: t-and-t-demo/t-and-t-demo
+# resources:
+#   repositories:
+#   - repository: MyAzureReposGitRepo
+#     type: git
+#     name: t-and-t-demo/t-and-t-demo
 
 # Test Staging
 stages:
@@ -39,7 +39,7 @@ stages:
         deploy:      
           steps:
           - checkout: self
-          - checkout: MyAzureReposGitRepo
+          - checkout: git://t-and-t-demo/t-and-t-demo
           - task: CopyFilesOverSSH@0
             displayName: 'SSH Deploy Scripts to Backend'
             inputs:
@@ -84,6 +84,6 @@ stages:
         deploy:
           steps:
             - checkout: self
-            - checkout: MyAzureReposGitRepo
+            - checkout: git://t-and-t-demo/t-and-t-demo
             - script: echo 'Production Deployment Completed!'
               displayName: 'Production Deployment'
