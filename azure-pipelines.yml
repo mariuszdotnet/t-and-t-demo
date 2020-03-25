@@ -9,9 +9,10 @@ trigger:
 pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
+# Test Staging
 stages:
-- stage: Test_Stage
-  displayName: Test Stage
+- stage: Test_Staging
+  displayName: Test Staging
   jobs:
   - job: Test_Job
     displayName: Test Job
@@ -19,8 +20,9 @@ stages:
     - script: echo 'SonarCube Result!'
       displayName: 'SonarCube Scan'
 
-- stage: Deploy_Stage
-  displayName: Deploy Stage
+# Deploy to Staging
+- stage: Deploy_Staging
+  displayName: Deploy Staging
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
@@ -72,3 +74,17 @@ stages:
               scriptPath: '/home/mariuszdotnet/deploy-scripts/7_check_200.sh'
               args: 'https://www.tntnightmarket.biz'
               readyTimeout: '20000'
+
+# Deploy to Production
+- stage: Deploy_Production
+  displayName: Deply Production
+  jobs:
+  - deployment: Deploy_Job
+    displayName: Deploy Job
+    environment: 'production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - script: echo 'SonarCube Result!'
+              displayName: 'SonarCube Scan'
