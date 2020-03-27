@@ -59,7 +59,7 @@ stages:
             inputs:
               sshEndpoint: 'tnt-demo-ssh'
               runOptions: 'script'
-              scriptPath: '/home/mariuszdotnet/deploy-scripts/7_check_200.sh'
+              scriptPath: '. /home/mariuszdotnet/deploy-scripts/7_check_200.sh'
               args: 'https://www.tntnightmarket.biz'
               readyTimeout: '20000'
 
