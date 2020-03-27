@@ -9,16 +9,12 @@ trigger:
 pool:
   name: 'CentOSAgent-TnT-Demo-Pool'
 
-# resources:
-#   repositories:
-#   - repository: MyAzureReposGitRepo
-#     type: git
-#     name: t-and-t-demo/t-and-t-demo
-
 # Test Staging
 stages:
 - stage: Test_Staging
   displayName: Test Staging
+  pool:
+    vmImage: 'ubuntu-latest'
   jobs:
   - job: Test_Job
     displayName: Test Job
@@ -30,6 +26,8 @@ stages:
 # Deploy to Staging
 - stage: Deploy_Staging
   displayName: Deploy Staging
+  pool:
+    vmImage: 'ubuntu-latest'
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
@@ -56,14 +54,6 @@ stages:
               runOptions: 'script'
               scriptPath: '/home/mariuszdotnet/deploy-scripts/1_enable_maintenance.sh'
               readyTimeout: '20000'
-          - task: SSH@0
-            displayName: '2 Backup Database'
-            inputs:
-              sshEndpoint: 'tnt-demo-ssh'
-              runOptions: 'script'
-              scriptPath: '/home/mariuszdotnet/deploy-scripts/2_backup_db.sh'
-              readyTimeout: '20000'
-
           - task: SSH@0
             displayName: '7 Check Page Status 200'
             inputs:
