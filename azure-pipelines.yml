@@ -28,8 +28,6 @@ stages:
 # Deploy to Staging
 - stage: Deploy_Staging
   displayName: Deploy Staging
-  # pool:
-  #   vmImage: 'ubuntu-latest'
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
@@ -60,6 +58,8 @@ stages:
 # Deploy to Production
 - stage: Deploy_Production
   displayName: Deploy Production
+  pool:
+    vmImage: 'ubuntu-latest'
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
