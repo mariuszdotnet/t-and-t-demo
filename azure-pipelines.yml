@@ -39,14 +39,6 @@ stages:
           - checkout: self
           - checkout: git://t-and-t-demo/t-and-t-demo
 
-          # - task: CopyFilesOverSSH@0
-          #   displayName: 'SSH Deploy Scripts to Backend'
-          #   inputs:
-          #     sshEndpoint: 'tnt-demo-ssh'
-          #     sourceFolder: '$(Agent.BuildDirectory)/s/t-and-t-demo/deploy-scripts/'
-          #     contents: '**'
-          #     targetFolder: '/home/mariuszdotnet/deploy-scripts/'
-          #     readyTimeout: '20000'
           - task: SSH@0
             displayName: '1 Enable Maintenance'
             inputs:
