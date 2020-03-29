@@ -26,8 +26,8 @@ stages:
 # Deploy to Staging
 - stage: Deploy_Staging
   displayName: Deploy Staging
-  pool:
-    vmImage: 'ubuntu-latest'
+  # pool:
+  #   vmImage: 'ubuntu-latest'
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
