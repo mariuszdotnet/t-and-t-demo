@@ -37,6 +37,7 @@ stages:
           find . -name "*.otf" -type f -print -delete
 
     - task: ArchiveFiles@2
+      displayName: Create Archive File
       inputs:
         rootFolderOrFile: '$(Build.BinariesDirectory)'
         includeRootFolder: true
