@@ -14,7 +14,8 @@ stages:
 - stage: Test_Staging
   displayName: Test Staging
   pool:
-    vmImage: 'ubuntu-latest'
+    #vmImage: 'ubuntu-latest'
+    name: 'CentOSAgent-TnT-Demo-Pool'
   jobs:
   - job: Test_Job
     displayName: Test Job
@@ -22,6 +23,7 @@ stages:
     - checkout: self
     - script: echo 'SonarCube Result!'
       displayName: 'SonarCube Scan'
+    
 
 # Deploy to Staging
 - stage: Deploy_Staging
