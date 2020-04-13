@@ -36,13 +36,13 @@ stages:
           find . -name "*.ttf" -type f -print -delete
           find . -name "*.otf" -type f -print -delete
 
-    # - task: ArchiveFiles@2
-    #   inputs:
-    #     rootFolderOrFile: '$(Build.BinariesDirectory)'
-    #     includeRootFolder: true
-    #     archiveType: 'zip'
-    #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    #     replaceExistingArchive: true
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(Build.BinariesDirectory)'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
 
 # Deploy to Staging
 - stage: Deploy_Staging
