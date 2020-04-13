@@ -29,7 +29,7 @@ stages:
         targetType: 'inline'
         script: |
           # Write your commands here
-          
+          ls
           echo 'Hello world'
 
     # - task: ArchiveFiles@2
