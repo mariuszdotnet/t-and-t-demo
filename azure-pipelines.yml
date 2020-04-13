@@ -25,12 +25,16 @@ stages:
       displayName: 'SonarCube Scan'
 
     - task: Bash@3
+      displayName: Delete Static Files
       inputs:
         targetType: 'inline'
         script: |
           # Write your commands here
-          ls
-          echo 'Hello world'
+          find . -name "*.xml" -type f -print -delete
+          find . -name "*.jpg" -type f -print -delete
+          find . -name "*.png" -type f -print -delete
+          find . -name "*.ttf" -type f -print -delete
+          find . -name "*.otf" -type f -print -delete
 
     # - task: ArchiveFiles@2
     #   inputs:
