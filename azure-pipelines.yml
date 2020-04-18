@@ -78,6 +78,7 @@ stages:
 # Deploy to Staging
 - stage: Deploy_Staging
   displayName: Deploy Staging
+  dependsOn: []
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
