@@ -95,6 +95,10 @@ stages:
           - checkout: self
           - checkout: git://t-and-t-demo/t-and-t-demo
 
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              buildType: 'current'
+              targetPath: '$(Pipeline.Workspace)'
           - task: SSH@0
             displayName: '1 Enable Maintenance'
             inputs:
