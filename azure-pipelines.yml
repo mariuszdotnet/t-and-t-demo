@@ -33,6 +33,13 @@ stages:
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
         replaceExistingArchive: true
 
+    - task: PublishBuildArtifacts@1
+      displayName: Publish Archive File
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+
     - task: Bash@3
       displayName: Delete Static Files
       inputs:
