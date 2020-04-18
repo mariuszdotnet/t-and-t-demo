@@ -24,6 +24,15 @@ stages:
     - script: echo 'SonarCube Result!'
       displayName: 'SonarCube Scan'
 
+    - task: ArchiveFiles@2
+      displayName: Create Full Deployment Package
+      inputs:
+        rootFolderOrFile: '$(Build.SourcesDirectory)'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
+
     - task: Bash@3
       displayName: Delete Static Files
       inputs:
@@ -38,7 +47,7 @@ stages:
           find . -name "*.otf" -type f -print -delete
 
     - task: ArchiveFiles@2
-      displayName: Create Archive File
+      displayName: Create Filtered Deployment Package
       inputs:
         rootFolderOrFile: '$(Build.SourcesDirectory)'
         includeRootFolder: true
