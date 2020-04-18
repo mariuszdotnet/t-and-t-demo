@@ -31,13 +31,17 @@ stages:
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-full.zip'
         replaceExistingArchive: true
 
-    - task: PublishBuildArtifacts@1
-      displayName: Publish Archive File
+    # - task: PublishBuildArtifacts@1
+    #   displayName: Publish Archive File
+    #   inputs:
+    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #     ArtifactName: 'drop-full'
+    #     publishLocation: 'Container'
+    - task: PublishPipelineArtifact@1
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop-full'
-        publishLocation: 'Container'
-
+        targetPath: '$(Pipeline.Workspace)'
+        publishLocation: 'pipeline'
+        
     - task: SSH@0
       displayName: Delete Zip
       inputs:
