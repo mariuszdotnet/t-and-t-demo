@@ -41,6 +41,7 @@ stages:
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)'
         publishLocation: 'pipeline'
+        artifact: 'drop-full'
         
     - task: SSH@0
       displayName: Delete Zip
