@@ -11,18 +11,16 @@ pool:
 
 # Test Staging
 stages:
-- stage: Test_Staging
-  displayName: Test Staging
+- stage: Create_Artifacts
+  displayName: Create Artifacts
   pool:
     #vmImage: 'ubuntu-latest'
     name: 'CentOSAgent-TnT-Demo-Pool'
   jobs:
-  - job: Test_Job
-    displayName: Test Job
+  - job: Create_Archive
+    displayName: Create Archive
     steps:
     - checkout: self
-    - script: echo 'SonarCube Result!'
-      displayName: 'SonarCube Scan'
 
     - task: ArchiveFiles@2
       displayName: Create Full Deployment Package
@@ -37,7 +35,7 @@ stages:
       displayName: Publish Archive File
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
+        ArtifactName: 'drop-full'
         publishLocation: 'Container'
 
     - task: Bash@3
@@ -66,7 +64,7 @@ stages:
       displayName: Publish Archive File
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
+        ArtifactName: 'drop-filtered'
         publishLocation: 'Container'
 
 # Deploy to Staging
