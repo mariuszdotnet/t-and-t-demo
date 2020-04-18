@@ -30,7 +30,7 @@ stages:
         rootFolderOrFile: '$(Build.SourcesDirectory)'
         includeRootFolder: true
         archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-full.zip'
         replaceExistingArchive: true
 
     - task: PublishBuildArtifacts@1
@@ -59,7 +59,7 @@ stages:
         rootFolderOrFile: '$(Build.SourcesDirectory)'
         includeRootFolder: true
         archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-filtered.zip'
         replaceExistingArchive: true
 
     - task: PublishBuildArtifacts@1
