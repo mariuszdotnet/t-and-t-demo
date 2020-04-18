@@ -31,6 +31,7 @@ stages:
         script: |
           # Write your commands here
           find . -name "*.xml" -type f -print -delete
+          find . -name "*.gif" -type f -print -delete
           find . -name "*.jpg" -type f -print -delete
           find . -name "*.png" -type f -print -delete
           find . -name "*.ttf" -type f -print -delete
