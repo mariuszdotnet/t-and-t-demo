@@ -38,6 +38,14 @@ stages:
         ArtifactName: 'drop-full'
         publishLocation: 'Container'
 
+    - task: SSH@0
+      displayName: Delete Zip
+      inputs:
+        sshEndpoint: 'tnt-demo-ssh'
+        runOptions: 'inline'
+        inline: 'rm -f $(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-full.zip'
+        readyTimeout: '20000'
+
     - task: Bash@3
       displayName: Delete Static Files
       inputs:
