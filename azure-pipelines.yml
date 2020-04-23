@@ -1,6 +1,3 @@
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
   - none
 pr:
@@ -31,20 +28,15 @@ stages:
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-full.zip'
         replaceExistingArchive: true
 
-    # - task: PublishBuildArtifacts@1
-    #   displayName: Publish Archive File
-    #   inputs:
-    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    #     ArtifactName: 'drop-full'
-    #     publishLocation: 'Container'
     - task: PublishPipelineArtifact@1
+      displayName: Publish Full Deployment Package
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)'
         publishLocation: 'pipeline'
         artifact: 'drop-full'
         
     - task: SSH@0
-      displayName: Delete Zip
+      displayName: Clean Up Artifact Working Directory
       inputs:
         sshEndpoint: 'tnt-demo-ssh'
         runOptions: 'inline'
@@ -74,7 +66,7 @@ stages:
         replaceExistingArchive: true
 
     - task: PublishBuildArtifacts@1
-      displayName: Publish Archive File
+      displayName: Publish Filtered Deployment Package
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop-filtered'
