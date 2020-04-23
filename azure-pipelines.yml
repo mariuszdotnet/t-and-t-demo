@@ -129,14 +129,15 @@ stages:
       runOnce:
         deploy:
           steps:
-            - checkout: self
+            #- checkout: self
             - checkout: git://t-and-t-demo/t-and-t-demo
+              displayName: Deployment Scripts
 
             - task: PythonScript@0
               displayName: Selenium Tests
               inputs:
                 scriptSource: 'filePath'
-                scriptPath: '$(Agent.BuildDirectory)/s/t-and-t-demo/selenium-test/test.py'
+                scriptPath: '$(Agent.BuildDirectory)/s/selenium-test/test.py'
 
             - script: echo 'Production Deployment Completed!'
               displayName: 'Production Deployment'
