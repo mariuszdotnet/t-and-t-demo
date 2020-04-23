@@ -91,6 +91,7 @@ stages:
             displayName: Download Artifact
             inputs:
               buildType: 'current'
+              artifactName: drop-full
               targetPath: '$(Pipeline.Workspace)'
 
           - task: SSH@0
