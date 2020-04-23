@@ -98,7 +98,8 @@ stages:
             inputs:
               sshEndpoint: 'tnt-demo-ssh'
               runOptions: 'script'
-              scriptPath: '$(Agent.BuildDirectory)/s/t-and-t-demo/deploy-scripts/1_enable_maintenance.sh'
+              #scriptPath: '$(Agent.BuildDirectory)/s/t-and-t-demo/deploy-scripts/1_enable_maintenance.sh'
+              scriptPath: '$(Agent.BuildDirectory)/s/deploy-scripts/1_enable_maintenance.sh'
               readyTimeout: '20000'
           - task: SSH@0
             displayName: '7 Check Page Status 200'
