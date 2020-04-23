@@ -19,6 +19,7 @@ stages:
     displayName: Create Archive
     steps:
     - checkout: self
+      displayName: App Source Code
 
     - task: ArchiveFiles@2
       displayName: Create Full Deployment Package
