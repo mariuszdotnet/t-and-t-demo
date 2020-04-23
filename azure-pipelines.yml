@@ -85,16 +85,14 @@ stages:
         deploy:      
           steps:
           #- checkout: self
-          #- checkout: git://t-and-t-demo/t-and-t-demo
+          - checkout: git://t-and-t-demo/t-and-t-demo
+            displayName: Checkout Deployment Scripts
           - task: DownloadPipelineArtifact@2
             displayName: Download Artifact
             inputs:
               buildType: 'current'
               targetPath: '$(Pipeline.Workspace)'
-          - task: DownloadPipelineArtifact@2
-            inputs:
-              buildType: 'current'
-              targetPath: '$(Pipeline.Workspace)'
+
           - task: SSH@0
             displayName: '1 Enable Maintenance'
             inputs:
