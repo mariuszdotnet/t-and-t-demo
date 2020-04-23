@@ -4,15 +4,16 @@ pr:
   - none
 
 pool:
-  name: 'CentOSAgent-TnT-Demo-Pool'
+  #name: 'CentOSAgent-TnT-Demo-Pool'
+  vmImage: 'ubuntu-latest'
 
 # Test Staging
 stages:
 - stage: Create_Artifacts
   displayName: Create Artifacts
-  pool:
+  #pool:
     #vmImage: 'ubuntu-latest'
-    name: 'CentOSAgent-TnT-Demo-Pool'
+    #name: 'CentOSAgent-TnT-Demo-Pool'
   jobs:
   - job: Create_Archive
     displayName: Create Archive
@@ -75,6 +76,8 @@ stages:
 # Deploy to Staging
 - stage: Deploy_Staging
   displayName: Deploy Staging
+  pool:
+    name: 'CentOSAgent-TnT-Demo-Pool'
   #dependsOn: []
   jobs:
   - deployment: Deploy_Job
