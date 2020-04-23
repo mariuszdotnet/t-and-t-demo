@@ -85,8 +85,7 @@ stages:
         deploy:      
           steps:
           - checkout: self
-          #- checkout: git://t-and-t-demo/t-and-t-demo
-            displayName: Checkout Deployment Scripts
+          - checkout: git://t-and-t-demo/t-and-t-demo
           - task: DownloadPipelineArtifact@2
             displayName: Download Artifact
             inputs:
