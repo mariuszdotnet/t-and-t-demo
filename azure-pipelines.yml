@@ -91,12 +91,12 @@ stages:
           #- checkout: self
           - checkout: git://t-and-t-demo/t-and-t-demo
             displayName: Deployment Scripts
-          - task: DownloadPipelineArtifact@2
-            displayName: Download Artifact
-            inputs:
-              buildType: 'current'
-              artifactName: 'drop-full'
-              targetPath: '$(Pipeline.Workspace)'
+          # - task: DownloadPipelineArtifact@2
+          #   displayName: Download Artifact
+          #   inputs:
+          #     buildType: 'current'
+          #     artifactName: 'drop-full'
+          #     targetPath: '$(Pipeline.Workspace)'
 
           - task: SSH@0
             displayName: '1 Enable Maintenance'
