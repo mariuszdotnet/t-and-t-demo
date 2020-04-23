@@ -84,7 +84,7 @@ stages:
       runOnce:
         deploy:      
           steps:
-          - checkout: self
+          #- checkout: self
           - checkout: git://t-and-t-demo/t-and-t-demo
           - task: DownloadPipelineArtifact@2
             displayName: Download Artifact
