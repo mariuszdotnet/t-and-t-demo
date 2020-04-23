@@ -65,12 +65,12 @@ stages:
         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-filtered.zip'
         replaceExistingArchive: true
 
-    - task: PublishBuildArtifacts@1
+    - task: PublishPipelineArtifact@1
       displayName: Publish Filtered Deployment Package
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop-filtered'
-        publishLocation: 'Container'
+        targetPath: '$(Build.ArtifactStagingDirectory)'
+        publishLocation: 'pipeline'
+        artifact: 'drop-filtered'
 
 # Deploy to Staging
 - stage: Deploy_Staging
