@@ -105,7 +105,7 @@ stages:
               targetType: 'inline'
               script: |
                 # Write your commands here
-                unzip -d temp -j $(Build.BuildNumber)-full.zip
+                unzip -d temp -j -o $(Build.BuildNumber)-full.zip
               workingDirectory: '$(Pipeline.Workspace)'
 
           - task: SSH@0
