@@ -125,6 +125,13 @@ stages:
               scriptPath: '$(Agent.BuildDirectory)/s/deploy-scripts/7_check_200.sh'
               args: 'https://www.tntnightmarket.biz'
               readyTimeout: '20000'
+          - task: SSH@0
+            displayName: 'SUDO Test'
+            inputs:
+              sshEndpoint: 'tnt-demo-ssh'
+              runOptions: 'inline'
+              inline: 'sudo yum install epel-release'
+              readyTimeout: '20000'
 
 # Deploy to Production
 - stage: Deploy_Production
