@@ -79,7 +79,7 @@ stages:
   displayName: Deploy Staging
   pool:
     name: 'CentOSAgent-TnT-Demo-Pool'
-  dependsOn: []
+  #dependsOn: []
   jobs:
   - deployment: Deploy_Job
     displayName: Deploy Job
