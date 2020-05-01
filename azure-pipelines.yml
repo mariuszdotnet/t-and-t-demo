@@ -26,8 +26,8 @@ stages:
       inputs:
         rootFolderOrFile: '$(Build.SourcesDirectory)'
         includeRootFolder: true
-        archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-full.zip'
+        archiveType: 'tar'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildNumber)-full.tar'
         replaceExistingArchive: true
 
     - task: PublishPipelineArtifact@1
